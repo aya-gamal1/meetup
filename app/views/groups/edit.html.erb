@@ -1,0 +1,15 @@
+<%= form_for :group ,url:group_path(@group),method: :put do |f| %>
+  <p>
+    <%= f.label :title %><br>
+    <%= f.text_field :topicname %>
+  </p>
+ 
+  <p>
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
+  </p>
+ 
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
