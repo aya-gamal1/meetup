@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150506212045) do
+ActiveRecord::Schema.define(version: 20150508200900) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "text",       limit: 65535
@@ -35,16 +35,20 @@ ActiveRecord::Schema.define(version: 20150506212045) do
   add_index "event_admins", ["user_id"], name: "index_event_admins_on_user_id", using: :btree
 
   create_table "events", force: :cascade do |t|
-    t.string   "location",    limit: 255
-    t.text     "description", limit: 65535
-    t.string   "title",       limit: 255
-    t.string   "avatar",      limit: 255
+    t.string   "location",            limit: 255
+    t.text     "description",         limit: 65535
+    t.string   "title",               limit: 255
+    t.string   "avatar",              limit: 255
     t.date     "date"
     t.time     "time"
-    t.integer  "user_id",     limit: 4
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-    t.integer  "group_id",    limit: 4
+    t.integer  "user_id",             limit: 4
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.integer  "group_id",            limit: 4
+    t.string   "avatar_file_name",    limit: 255
+    t.string   "avatar_content_type", limit: 255
+    t.integer  "avatar_file_size",    limit: 4
+    t.datetime "avatar_updated_at"
   end
 
   add_index "events", ["group_id"], name: "index_events_on_group_id", using: :btree

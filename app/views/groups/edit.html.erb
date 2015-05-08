@@ -3,11 +3,16 @@
     <%= f.label :title %><br>
     <%= f.text_field :topicname %>
   </p>
- 
+  <% if @group.errors[:topicname].present? %>
+          title can`t be blank
+  <% end %>
   <p>
     <%= f.label :description %><br>
     <%= f.text_area :description %>
   </p>
+  <% if @group.errors[:description].present? %>
+          description can`t be blank
+  <% end %>
  
   <p>
     <%= f.submit %>

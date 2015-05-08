@@ -1,13 +1,16 @@
 class GroupsController < ApplicationController
 def new
-
+  @group = Group.new
 end
 
 def create
   @group = Group.new(group_params)
  
-  @group.save
+ if  @group.save
   redirect_to @group
+else
+render 'new'
+  end
 end
 
 def show
@@ -27,6 +30,8 @@ def update
 @group=Group.find(params[:id])
 if @group.update(group_params)
 redirect_to @group
+else 
+render 'edit'
 end
 end
 

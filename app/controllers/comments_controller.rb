@@ -20,18 +20,20 @@ def destroy
 
 
 def edit
-
+@group = Group.find(params[:group_id])
 @event=Event.find(params[:event_id])
 @comment = @event.comments.find(params[:id])
 end
 
 
 def update
-
+    @group = Group.find(params[:group_id])
 @event=Event.find(params[:event_id])
 @comment = @event.comments.find(params[:id])
 if @comment.update(comment_params)
-redirect_to @event
+    redirect_to group_event_path(@group,@event)
+else 
+render 'edit'
 end
 end
 
