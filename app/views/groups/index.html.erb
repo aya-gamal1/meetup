@@ -1,16 +1,23 @@
-<h1>Listing groups</h1>
- 
+
+<%= image_tag("meetup.jpg") %>
+<div class="container">
+<%= link_to 'Calendar',events_find_path, class:"btn btn-default" %>	
 
  
+
+ <div class="row">
   <% @groups.each do |group| %>
- <p> 
-<%= link_to group.topicname, group_path(group) %>
+  <div class="col-md-4">
 
-      <%= group.description %>
+<h3 class="text-center"><%= group.topicname %></h3><br>
 
-      <td><%= link_to 'Show', group_path(group) %></td>
-      <td><%= link_to 'Edit', edit_group_path(group) %></td>
-      <td><%= link_to 'Delete', group_path(group) , method: 'delete',data:{confirm:'Are you sure?'}%></td>
-  </p>
+<%= link_to group_path(group) do %>
+   <div class="text-center"> <%= image_tag group.avatar.url ,class:'img-circle' %></div>
+<% end %>
+
+ </div>     
+ 
   <% end %>
+ </div> 
+</div>
 

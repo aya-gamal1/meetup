@@ -4,7 +4,16 @@ class EventsController < ApplicationController
 def new
 
 end
+def find
+    @events = Event.where("date > ?", params[:date])
+    
+    respond_to do |format|
+      format.html
+      format.json {render json: @events }
+    end
+     
 
+end
 
 
 def create
