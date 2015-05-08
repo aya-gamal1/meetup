@@ -65,11 +65,16 @@ ActiveRecord::Schema.define(version: 20150508200900) do
   add_index "group_memebers", ["user_id"], name: "index_group_memebers_on_user_id", using: :btree
 
   create_table "groups", force: :cascade do |t|
-    t.string   "topicname",   limit: 255
-    t.text     "description", limit: 65535
-    t.integer  "user_id",     limit: 4
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.string   "topicname",           limit: 255
+    t.text     "description",         limit: 65535
+    t.integer  "user_id",             limit: 4
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.string   "avatar",              limit: 255
+    t.string   "avatar_file_name",    limit: 255
+    t.string   "avatar_content_type", limit: 255
+    t.integer  "avatar_file_size",    limit: 4
+    t.datetime "avatar_updated_at"
   end
 
   add_index "groups", ["user_id"], name: "index_groups_on_user_id", using: :btree

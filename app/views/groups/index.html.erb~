@@ -5,6 +5,7 @@
   <% @groups.each do |group| %>
  <p> 
 <%= link_to group.topicname, group_path(group) %>
+ <%= image_tag group.avatar.url ,class:'img-circle'%>
 
       <%= group.description %>
 

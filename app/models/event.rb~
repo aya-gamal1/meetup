@@ -1,4 +1,8 @@
 class Event < ActiveRecord::Base
+<<<<<<< HEAD
+=======
+
+>>>>>>> bb6d5e8ba087b470fda70f29d745f25f6faa2157
   has_many :user, :through => :eventadmins
   has_many :eventadmins
   has_many :comments ,dependent: :destroy

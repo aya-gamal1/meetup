@@ -1,4 +1,5 @@
 class Event < ActiveRecord::Base
+
   has_many :user, :through => :eventadmins
   has_many :eventadmins
   has_many :comments ,dependent: :destroy

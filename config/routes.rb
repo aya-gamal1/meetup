@@ -4,6 +4,7 @@ resources :groups do
 resources:comments
 end
 end
+get 'events/find' => 'events#find'
 
 
 
