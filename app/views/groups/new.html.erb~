@@ -3,8 +3,10 @@
 <%= form_for :group ,url:groups_path do |f| %>
 
 
+    <%= fields_for :grouptag do |z| %>
+<%= z.hidden_field :group_id, :value => @id %>
 
-
+        <% end %>
   <p>
     <%= f.label :title %><br>
     <%= f.text_field :topicname %>
@@ -17,13 +19,20 @@
     <%= f.label :description %><br>
     <%= f.text_area :description %>
   </p>
-<<<<<<< HEAD
+
  <% if @group.errors[:description].present? %>
           description can`t be blank
   <% end %>
-=======
+ <p>
+    <%= fields_for :tag do |t| %>
+    <%= t.label :interest %><br>
+            <%= t.text_field :name %><br/><br />
+
+        <% end %>
+  </p>
+
   <%= f.file_field :avatar %>
->>>>>>> bb6d5e8ba087b470fda70f29d745f25f6faa2157
+
  
   <p>
     <%= f.submit %>
