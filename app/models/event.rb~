@@ -1,6 +1,20 @@
 class Event < ActiveRecord::Base
-  #belongs_to :user, :through => :eventadmins
+<<<<<<< HEAD
+=======
+
+>>>>>>> bb6d5e8ba087b470fda70f29d745f25f6faa2157
+  has_many :user, :through => :eventadmins
   has_many :eventadmins
-  has_many :comments
+  has_many :comments ,dependent: :destroy
   belongs_to :group
+
+has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
+  validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
+
+validates :location, presence: true
+validates :description, presence: true
+validates :title, presence: true
+validates :avatar, presence: true
+validates :date, presence: true
+validates :time, presence: true
 end

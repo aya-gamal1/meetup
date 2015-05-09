@@ -1,4 +1,4 @@
-
+<%= image_tag @event.avatar.url(:medium) %>
 <p>
   <strong>Date:</strong>
   <%= @event.date %>
@@ -39,6 +39,7 @@
                data: { confirm: 'Are you sure?' } %>
 
 
+<%= link_to 'Edit', edit_group_event_comment_path(@group,@event,comment), method: :get %>
 
 
 

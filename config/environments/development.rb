@@ -43,6 +43,7 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
 
 
+
 config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
       :address              => "smtp.gmail.com",
@@ -52,4 +53,7 @@ config.action_mailer.delivery_method = :smtp
       :password             =>"ITIintake35",
       :authentication       => 'plain',
       :enable_starttls_auto => true  }
+
+Paperclip.options[:command_path] = "/usr/local/bin/"
+
 end

@@ -4,6 +4,7 @@ resources :groups do
 resources:comments
 end
 end
+get 'events/find' => 'events#find'
 
 resources :users
 get "log_out" => "sessions#destroy", :as => "log_out"

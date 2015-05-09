@@ -3,31 +3,47 @@
     <%= f.label :title %><br>
     <%= f.text_field :title %>
   </p>
- 
+  <% if @event.errors[:title].present? %>
+          title can`t be blank
+  <% end %>
   <p>
     <%= f.label :description %><br>
     <%= f.text_area :description %>
   </p>
+ <% if @event.errors[:description].present? %>
+          description can`t be blank
+  <% end %>
 <p>
     <%= f.label :location %><br>
     <%= f.text_area :location %>
   </p>
+ <% if @event.errors[:location].present? %>
+         location can`t be blank
+  <% end %>
 
 <p>
     <%= f.label :avatar %><br>
-    <%= f.text_area :avatar %>
+  <%= f.file_field :avatar %>
   </p>
+<% if @event.errors[:avatar].present? %>
+         avatar can`t be blank
+  <% end %>
 
 <p>
     <%= f.label :date %><br>
-    <%= f.text_field:date %>
+    <%= f.date_field:date %>
   </p>
+<% if @event.errors[:date].present? %>
+        date can`t be blank
+  <% end %>
 
 <p>
     <%= f.label :time %><br>
-    <%= f.text_field :time %>
+    <%= f.time_field :time %>
   </p>
- 
+<% if @event.errors[:time].present? %>
+         time can`t be blank
+  <% end %> 
   <p>
     <%= f.submit %>
   </p>

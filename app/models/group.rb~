@@ -1,4 +1,12 @@
 class Group < ActiveRecord::Base
   belongs_to :user
-has_many :events,dependent: :destroy
+has_many :events ,dependent: :destroy
+<<<<<<< HEAD
+
+validates :topicname, presence: true
+validates :description, presence: true
+=======
+has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
+  validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
+>>>>>>> bb6d5e8ba087b470fda70f29d745f25f6faa2157
 end
