@@ -9,8 +9,12 @@ def index
 
 def create
   @group = Group.new(group_params)
- 
- if  @group.save
+   @tag = Tag.new(tag_params)
+	group_id=Group.last.id 
+	tag_id=Tag.last.id 
+   @tag_group = TagGroup.new(:group_id=> group_id,:tag_id=> tag_id)
+
+ if  @group.save and @tag.save and @tag_group.save
   redirect_to @group
 else
 render 'new'
@@ -29,7 +33,7 @@ end
 def update
 
 @group=Group.find(params[:id])
-if @group.update(group_params)
+if @group.update(group_params) 
 redirect_to @group
 else 
 render 'edit'
@@ -47,6 +51,12 @@ end
 private
   def group_params
     params.require(:group).permit(:topicname, :description, :avatar)
+  end
+ def tag_params
+    params.require(:tag).permit(:name)
+  end
+def grouptag_params
+    params.require(:grouptag).permit(:group_id,:tag_id)
   end
 
 end

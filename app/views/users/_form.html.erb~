@@ -1,0 +1,94 @@
+<%= form_for @user, :html => { :class => "form-horizontal user" } do |f| %>
+
+  <% if @user.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :name, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :name, :class => 'form-control' %>
+    </div>
+
+  </div>
+  <div class="form-group">
+    <%= f.label :email, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.email_field :email, :class => 'form-control' %>
+    </div>
+
+  </div>
+  <div class="form-group">
+    <%= f.label :password, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.password_field :password, :class => 'form-control' %>
+    </div>
+   
+  </div>
+  <div class="form-group">
+    <%= f.label :gender, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+<%= f.radio_button :gender, "male", :checked => true %>
+		<%= label :gender_male, :gender, "Male" %>
+		<%= f.radio_button :gender, "female" %>
+		<%= label :gender_female, :gender, "Female" %>
+    </div>
+    
+  </div>
+  <div class="form-group">
+    <%= f.label :age, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+		<%= f.number_field :age ,:class => 'form-control'%>
+    </div>
+   
+  </div>
+  <div class="form-group">
+    <%= f.label :city, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+         <%= f.select :city, 
+    options_for_select([['Alex','Alex'],['Cairo','Cairo'],['paris','paris'],['london','london'],['Newyork','Newyork']], params[:city]),
+    {}, { :class => 'span3 controls controls-row' } %>
+
+    </div>
+   
+  </div>
+  <div class="form-group">
+    <%= f.label :country, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      
+  <%= f.select :country, 
+    options_for_select([['UK','UK'],['US','US'],['Egypt','Egypt'],['France','France']], params[:country]),
+    {}, { :class => 'span3 controls controls-row' } %>
+    </div>
+   
+  </div>
+  <div class="form-group">
+    <%= f.label :avatar, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+   
+      <%= f.text_field :avatar %>
+
+    </div>
+  
+  </div>
+
+
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      
+    </div>
+  </div>
+
+<% end %>

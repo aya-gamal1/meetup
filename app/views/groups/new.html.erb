@@ -5,11 +5,13 @@
 
 
 
+
   <div class="form-group">
     <%= f.label :title %>
     <%= f.text_field :topicname,class:"form-control" ,placeholder:"Enter group name....."%>
   </div>
   
+
  
  <% if @group.errors[:topicname].present? %>
           title can`t be blank
@@ -23,6 +25,17 @@
  <% if @group.errors[:description].present? %>
           description can`t be blank
   <% end %>
+
+
+
+ <p>
+    <%= fields_for :tag do |t| %>
+    <%= t.label :interest %><br>
+            <%= t.text_field :name %><br/><br />
+
+        <% end %>
+  </p>
+
  <div class="form-group">
   <%= f.file_field :avatar %>
 </div>

@@ -16,6 +16,7 @@
   <% if @group.errors[:description].present? %>
           description can`t be blank
   <% end %>
+
   <div class="form-group">
   <%= f.file_field :avatar %>
 </div>
@@ -23,5 +24,7 @@
  <div class="form-group">
     <%= f.submit class:"btn btn-warning"%>
   </div>
+
+ 
 <% end %>
 </div>
