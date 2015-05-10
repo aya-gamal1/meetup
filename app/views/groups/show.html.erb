@@ -1,35 +1,42 @@
-<%= link_to 'newevent', new_group_event_path(@group), method: :get %>
-<p>
-  <strong>Title:</strong>
-  <%= @group.topicname %>
-</p>
+<div class="container">
+  <h1 class="page-header text-capitalize"><%= @group.topicname %></h1>
+  <div><%= image_tag(@group.avatar.url, class:'center-block') %></div>
+
+<%= link_to 'Add Event', new_group_event_path(@group), method: :get, class:"pull-right btn btn-info" %>
+
  
-<p>
-  <strong>description:</strong>
+
+  <strong>Description:</strong>
   <%= @group.description %>
-</p>
+
 
  
 <h2>Events</h2>
 <% @group.events.each do |event| %>
   
+ <div class="row">
+  <div class="well">
+    
  
-  <p>
-    <strong>Events:</strong>
-    <%= event.date %>
-<%= event.time %><br>
-<%= link_to event.title , group_event_path(@group,event), method: :get %><br>
-    <%= event.description %>
-    <%= event.title %>
-  </p>
+<div class="col-md-3">
+  <%= image_tag event.avatar.url ,class:'img-responsive', style:'width: 100%' %>
+</div>
+ <h3><%= link_to event.title , group_event_path(@group,event), method: :get ,class:"text-capitalize lead",style:"color:black"%> <small> <%= event.date %> <%= event.time.to_s.split(' ')[1] %></small></h3>
 
-
-<%= link_to 'Delete ', [@group, event],
+<p><%= event.description %></p>
+  
+    
+  
+<div class="row">
+<div class="pull-right">
+<%= link_to 'Delete ', [@group, event],class:"btn btn-danger",
                method: :delete,
                data: { confirm: 'Are you sure?' } %>
 
-<%= link_to 'Edit', edit_group_event_path(@group,event), method: :get %>
-
-
-
+<%= link_to 'Edit', edit_group_event_path(@group,event), method: :get ,class:"btn btn-warning"%>
+</div>
+</div>
+ </div> 
+</div>
 <% end %>
+</div>

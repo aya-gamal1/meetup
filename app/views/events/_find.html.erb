@@ -1,0 +1,15 @@
+
+<% @events.each do |event| %>
+<div class="row">
+<h3 class="page-header"><%= event.date %></h3><br>
+
+<div class="col-md-4"> <%= image_tag event.avatar.url ,class:'img-responsive', style:'width: 100%' %>
+	</div>
+<%= link_to event.title , group_event_path(event.group_id,event), method: :get,style:'color:black',class:"text-uppercase lead" %><br>
+<%= event.time.to_s.split(' ')[1]
+ %>
+
+
+</div>
+<% end %>
+
