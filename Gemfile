@@ -41,6 +41,7 @@ group :development, :test do
   gem 'web-console', '~> 2.0'
   gem 'jquery-ui-rails'
   gem 'geocoder'
+  gem 'google_places'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'

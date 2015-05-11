@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
+  
   resources :tags
+
   get 'groups/search' => 'groups#search'
+  get 'groups/places' => 'groups#places'
 resources :groups do
+
   resources :events do 
 resources:comments
 end

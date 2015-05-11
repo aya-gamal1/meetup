@@ -28,8 +28,15 @@ def self.authenticate(email, password)
 
 
 
-has_many :events, :through => :eventadmins , dependent: :destroy
+<<<<<<< HEAD
+has_many :events, :through => :event_admins , dependent: :destroy
 	has_many :event_admins , dependent: :destroy
 	has_many :comments , dependent: :destroy
 	has_many :groups , dependent: :destroy
+=======
+has_many :events, :through => :event_admins
+	has_many :event_admins, dependent: :destroy
+	has_many :comments, dependent: :destroy
+	has_many :groups, dependent: :destroy
+>>>>>>> b748563200e4e2ed2c87c9d04088a015731fe2ab
 end

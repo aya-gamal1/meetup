@@ -1,9 +1,12 @@
 <% if current_user.isadmin == "admin" %>
+<div class="container">
 <p id="notice"><%= notice %></p>
+<%= link_to 'Groups', groups_path,class:"btn btn-info" %>
+ <%= link_to 'Users', users_path,class:"btn btn-primary" %>
 
 <h1>Listing Tags</h1>
 
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Name</th>
@@ -15,9 +18,9 @@
     <% @tags.each do |tag| %>
       <tr>
         <td><%= tag.name %></td>
-        <td><%= link_to 'Show', tag %></td>
-        <td><%= link_to 'Edit', edit_tag_path(tag) %></td>
-        <td><%= link_to 'Destroy', tag, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', tag ,class:"btn btn-success"%></td>
+        <td><%= link_to 'Edit', edit_tag_path(tag) ,class:"btn btn-warning"%></td>
+        <td><%= link_to 'Destroy', tag,class:"btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -25,7 +28,7 @@
 
 <br>
 
-<%= link_to 'New Tag', new_tag_path %>
+<%= link_to 'New Tag', new_tag_path ,class:"btn btn-success"%>
 
 
 <%else%>
@@ -34,3 +37,4 @@
     window.location.href="http://localhost:3000/groups"  // put your correct path in a string here
   </script>
 <%end%>  
+</div>
