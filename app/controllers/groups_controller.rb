@@ -28,7 +28,7 @@ def search
 end  
 
 def index
-    @groups = Group.all
+    @groups = Group.last(5).reverse
   end
 
 
