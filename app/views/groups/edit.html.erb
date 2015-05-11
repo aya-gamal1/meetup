@@ -1,21 +1,30 @@
+
+<div class="container">
+  <h1 class="page-header">Editing an Existing Group</h1>
 <%= form_for :group ,url:group_path(@group),method: :put do |f| %>
-  <p>
+  <div class="form-group">
     <%= f.label :title %><br>
-    <%= f.text_field :topicname %>
-  </p>
+    <%= f.text_field :topicname,class:"form-control",placeholder:"edit title here ....." %>
+  </div>
   <% if @group.errors[:topicname].present? %>
           title can`t be blank
   <% end %>
-  <p>
+  <div class="form-group">
     <%= f.label :description %><br>
-    <%= f.text_area :description %>
-  </p>
+    <%= f.text_area :description ,class:"form-control" %>
+  </div>
   <% if @group.errors[:description].present? %>
           description can`t be blank
   <% end %>
 
+  <div class="form-group">
   <%= f.file_field :avatar %>
-  <p>
-    <%= f.submit %>
-  </p>
+</div>
+ 
+ <div class="form-group">
+    <%= f.submit class:"btn btn-warning"%>
+  </div>
+
+ 
 <% end %>
+</div>

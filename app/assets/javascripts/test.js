@@ -6,17 +6,33 @@ $(function() {
 
 			      var dateAsString = dateText; //the first parameter of this function
 			      var dateAsObject = $(this).datepicker( 'getDate' ); //the getDate method
-			      console.log(dateAsString);
+			      var date="";
+			      //$.datepicker.formatDate('yy-mm-dd', dateAsString);
+			      year=dateAsObject.getFullYear();
+			      month=dateAsObject.getMonth()+1;
+			      if(month<10){
+			      	month="0"+month;
+			      }
+
+			      day=dateAsObject.getDate();
+			      if(day<10){
+			      	day="0"+day;
+			      }
+			      date=year+"-"+month+"-"+day;
+			      console.log(date);
 			      $.ajax({
   type: "GET",
   url: "/events/find",
   dataType: "JSON",
-  data: { 'date':dateAsString },
-  success: function(data) {
-    console.log(data);
+  data: { 'date': date },
+  complete: function(data)
+  {
+    console.log(data.responseText);
+    $("#results").html(data.responseText);
   }
 });
 			   }
 			});
 
   });
+
