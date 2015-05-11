@@ -3,7 +3,7 @@
 <%= form_for :group ,url:groups_path do |f| %>
 
 
-  
+    <%= f.hidden_field :user_id, :value => current_user.id %>
   <p>
     <%= f.label :title %><br>
     <%= f.text_field :topicname %>

@@ -1,6 +1,7 @@
 <div class="container">
 <%= form_for :event ,url:group_events_path do |f| %>
-  
+  <%= f.hidden_field :user_id, :value => current_user.id %>
+  <%= f.hidden_field :group_id, :value => @group.id %>
 <div class="form-group">
     <%= f.label :title %><br>
     <%= f.text_field :title ,class:"form-control" %>

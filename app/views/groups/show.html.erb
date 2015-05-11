@@ -1,4 +1,17 @@
+<html>
+<body>
 <%= link_to 'newevent', new_group_event_path(@group), method: :get %>
+
+<%  if current_user.isadmin == "admin" or current_user.id == @group.user_id %>
+<%= link_to 'edit group', edit_group_path(@group), method: :get %>
+<%= link_to 'delete group', group_path(@group), method: :delete,
+               data: { confirm: 'Are you sure?' } %>
+<% end %>
+
+<%if !@groupmemebe.present? and current_user.isadmin != "admin" and !@groupadmin.present? %>
+<%= button_to 'join'  ,{:controller => "groups", :action => "action", :group_id => @group.id, :user_id=>current_user.id} ,:id=>"button", :method=>:post  %>
+<% end %>
+
 <p>
   <strong>Title:</strong>
   <%= @group.topicname %>
@@ -23,13 +36,16 @@
     <%= event.title %>
   </p>
 
-
+<%  if current_user.isadmin == "admin" or current_user.id == event.user_id %>
 <%= link_to 'Delete ', [@group, event],
                method: :delete,
                data: { confirm: 'Are you sure?' } %>
 
 <%= link_to 'Edit', edit_group_event_path(@group,event), method: :get %>
-
+<% end %>
 
 
 <% end %>
+
+</body>
+</html>

@@ -2,6 +2,7 @@ class EventsController < ApplicationController
 
 
 def new
+@group=Group.find(params[:group_id])
   @event = Event.new
 end
 def find
@@ -33,6 +34,11 @@ def show
 
     @group = Group.find(params[:group_id])
     @event = @group.events.find(params[:id])
+
+id=current_user.id
+event_id=params[:id]
+@eventmember = EventAdmin.where({:event_id=>event_id,:user_id=>id}) 
+@eventadmin = Event.where({:id=>event_id,:user_id=>id}) 
 end
  
 
@@ -66,12 +72,25 @@ end
 end
 
 
+def action
 
+	@eventmemeber = EventAdmin.new(eventmemeber_params)
+@eventmemeber.save
+	id=EventAdmin.last.event_id 
+
+x= params.permit(:group_id)
+ 
+redirect_to group_event_path(:group_id=>x['group_id'],:id=>id)
+end
 
 
 private
     def event_params
-      params.require(:event).permit(:location, :description,:title,:avatar,:date,:time)
+      params.require(:event).permit(:location, :description,:title,:avatar,:date,:time,:user_id,:group_id)
     end
+def eventmemeber_params
+
+ params.permit(:event_id,:user_id)
+  end
 
 end
