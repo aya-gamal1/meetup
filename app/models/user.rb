@@ -2,18 +2,18 @@ class User < ActiveRecord::Base
 
 
 
-  #attr_accessor :password,  :email, :name, :gender, :age, :city, :country, :avatar 
+
   
-  #has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
+  has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
   
 
   validates :name, :password, :email, :gender, :age, :avatar, :country, :city , presence: true
   validates :password, length: { in: 6..20 }
   validates :email, length: { minimum: 6 } ,uniqueness: true
   validates :age, numericality: { only_integer: true }
-  #validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
+  validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
-
+  #attr_accessor :password,  :email, :name, :gender, :age, :city, :country, :avatar 
 
 def self.authenticate(email, password)
     user = find_by_email(email)

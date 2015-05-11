@@ -1,35 +1,65 @@
-<%= link_to 'newevent', new_group_event_path(@group), method: :get %>
-<p>
-  <strong>Title:</strong>
-  <%= @group.topicname %>
-</p>
+
+<html>
+<body>
+number of memeber :
+<%= @count %>
+
+<%  if current_user.isadmin == "admin" or current_user.id == @group.user_id %>
+<%= link_to 'edit group', edit_group_path(@group), method: :get %>
+<%= link_to 'delete group', group_path(@group), method: :delete,
+               data: { confirm: 'Are you sure?' } %>
+<% end %>
+
+<%if !@groupmemebe.present? and current_user.isadmin != "admin" and !@groupadmin.present? %>
+<%= button_to 'join'  ,{:controller => "groups", :action => "action", :group_id => @group.id, :user_id=>current_user.id} ,:id=>"button", :method=>:post  %>
+<% end %>
+
+
+
+<div class="container">
+  <h1 class="page-header text-capitalize"><%= @group.topicname %></h1>
+  <div><%= image_tag(@group.avatar.url, class:'center-block') %></div>
+
+<%= link_to 'Add Event', new_group_event_path(@group), method: :get, class:"pull-right btn btn-info" %>
+
+
  
-<p>
-  <strong>description:</strong>
+
+  <strong>Description:</strong>
   <%= @group.description %>
-</p>
+
 
  
 <h2>Events</h2>
 <% @group.events.each do |event| %>
   
+ <div class="row">
+  <div class="well">
+    
  
-  <p>
-    <strong>Events:</strong>
-    <%= event.date %>
-<%= event.time %><br>
-<%= link_to event.title , group_event_path(@group,event), method: :get %><br>
-    <%= event.description %>
-    <%= event.title %>
-  </p>
 
+<div class="col-md-3">
+  <%= image_tag event.avatar.url ,class:'img-responsive', style:'width: 100%' %>
+</div>
+ <h3><%= link_to event.title , group_event_path(@group,event), method: :get ,class:"text-capitalize lead",style:"color:black"%> <small> <%= event.date %> <%= event.time.to_s.split(' ')[1] %></small></h3>
 
-<%= link_to 'Delete ', [@group, event],
+<p><%= event.description %></p>
+  
+    
+  
+<div class="row">
+<div class="pull-right">
+<%  if current_user.isadmin == "admin" or current_user.id == event.user_id %>
+<%= link_to 'Delete ', [@group, event],class:"btn btn-danger",
                method: :delete,
                data: { confirm: 'Are you sure?' } %>
 
-<%= link_to 'Edit', edit_group_event_path(@group,event), method: :get %>
-
-
-
+<%= link_to 'Edit', edit_group_event_path(@group,event), method: :get ,class:"btn btn-warning"%>
 <% end %>
+</div>
+</div>
+ </div> 
+</div>
+<% end %>
+</div>
+

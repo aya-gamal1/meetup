@@ -1,18 +1,23 @@
 Rails.application.routes.draw do
+  get 'groups/search' => 'groups#search'
 resources :groups do
   resources :events do 
 resources:comments
 end
 end
 get 'events/find' => 'events#find'
+post 'groups/action'
+post 'events/action'
+
 
 resources :users
 get "log_out" => "sessions#destroy", :as => "log_out"
 get "log_in" => "sessions#new", :as => "log_in"
 get "sign_up" => "users#new", :as => "sign_up"
+<<<<<<< HEAD
 #root :to => "users#index"
 resources :sessions
-
+root :to => "groups#index"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
