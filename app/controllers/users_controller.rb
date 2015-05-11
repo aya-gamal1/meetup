@@ -13,10 +13,11 @@ def create
     @user = User.new(user_params)
   if @user.save
        UserMailer.welcome_email(@user).deliver_now
-     #redirect_to root_url, :notice => "Signed up!"
-     redirect_to @user
+     redirect_to root_url, :notice => "Signed up!"
+     #redirect_to "groups/index"
   else
-    render "new"
+    #redirect_to "groups/index"
+    redirect_to root_url, :notice => "Signed up!"
   end
 end
 def show

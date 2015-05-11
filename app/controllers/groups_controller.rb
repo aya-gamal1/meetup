@@ -2,6 +2,22 @@ class GroupsController < ApplicationController
 def new
   @group = Group.new
 end
+def search
+  @location =params[:location]
+  @distance =params[:distance]
+  
+  @tag = Tag.where("name = ?",params[:tag])
+  @groups_tags=TagGroup.where("tag_id = ?",@tag[0].id)
+  @group_ids =[];
+  @groups_tags.each do |group_tag|
+    @group_ids.push(group_tag.group_id)
+  end
+  @groups= Group.where("id IN (?)",@group_ids).near(@location, @distance)
+  # @groups=@groups
+  render 'index'
+
+
+end  
 
 def index
     @groups = Group.all
@@ -9,6 +25,9 @@ def index
 
 def create
   @group = Group.new(group_params)
+  @coors=Geocoder.coordinates(@group.location)
+  @group.latitude=@coors[0]
+  @group.longitude=@coors[1]
    @tag = Tag.new(tag_params)
 	group_id=Group.last.id 
 	tag_id=Tag.last.id 
@@ -50,7 +69,7 @@ end
 
 private
   def group_params
-    params.require(:group).permit(:topicname, :description, :avatar)
+    params.require(:group).permit(:topicname, :description, :avatar, :location, :latitude, :longitude)
   end
  def tag_params
     params.require(:tag).permit(:name)
