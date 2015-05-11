@@ -36,7 +36,9 @@ def show
 id=current_user.id
 event_id=params[:id]
 @eventmember = EventAdmin.where({:event_id=>event_id,:user_id=>id}) 
+@eventcount = EventAdmin.where({:event_id=>event_id}) 
 @eventadmin = Event.where({:id=>event_id,:user_id=>id}) 
+@count=@eventcount.count
 end
  
 

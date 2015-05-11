@@ -1,7 +1,8 @@
 
 <html>
 <body>
-
+number of memeber :
+<%= @count %>
 
 <%  if current_user.isadmin == "admin" or current_user.id == @group.user_id %>
 <%= link_to 'edit group', edit_group_path(@group), method: :get %>
@@ -36,30 +37,7 @@
   <div class="well">
     
  
-<<<<<<< HEAD
-  <p>
-    <strong>Events:</strong>
-    <%= event.date %>
-<%= event.time %><br>
-<%= link_to event.title , group_event_path(@group,event), method: :get %><br>
-    <%= event.description %>
-    <%= event.title %>
-  </p>
 
-<%  if current_user.isadmin == "admin" or current_user.id == event.user_id %>
-<%= link_to 'Delete ', [@group, event],
-               method: :delete,
-               data: { confirm: 'Are you sure?' } %>
-
-<%= link_to 'Edit', edit_group_event_path(@group,event), method: :get %>
-<% end %>
-
-
-<% end %>
-
-</body>
-</html>
-=======
 <div class="col-md-3">
   <%= image_tag event.avatar.url ,class:'img-responsive', style:'width: 100%' %>
 </div>
@@ -84,4 +62,4 @@
 </div>
 <% end %>
 </div>
->>>>>>> 65fcfd389260ef9148b6fab21b2454a4c3ef77ae
+

@@ -28,9 +28,11 @@ def show
     @group = Group.find(params[:id])
 id=current_user.id
 group_id=params[:id]
-@groupmemebe = GroupMemeber.where({:group_id=>group_id,:user_id=>id}) 
+@groupmemebe = GroupMemeber.where({:group_id=>group_id,:user_id=>id})
+@groupcount = GroupMemeber.where({:group_id=>group_id})  
 @groupadmin = Group.where({:id=>group_id,:user_id=>id}) 
 
+@count=@groupcount.count
 
 end
 

@@ -1,7 +1,8 @@
 
 <html>
 <body>
-
+number of memeber :
+<%= @count %><br>
 
 <%  if current_user.isadmin == "admin" or current_user.id == @group.user_id %>
 <%= link_to 'edit group', edit_group_path(@group), method: :get %>
