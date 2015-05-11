@@ -29,7 +29,7 @@ number of memeber :
 
 <%= link_to 'Add Event', new_group_event_path(@group), method: :get, class:"pull-right btn btn-info" %>
 <% end %>
-
+<%end%>
  
 
   <strong>Description:</strong>
