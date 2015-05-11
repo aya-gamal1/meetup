@@ -1,0 +1,10 @@
+<div><%= image_tag("meetup.jpg", class:'center-block') %></div>
+<div class="container">
+<div><%= link_to 'Calendar',events_find_path, class:"btn btn-default pull-right" %>
+	<%= link_to 'Groups',events_find_path, class:"btn btn-default pull-right" %>
+</div><br><br>
+<div class="pull-right "id="datepicker"></div>
+<div id="results"></id>
+<%= javascript_include_tag "application" %>	
+
+</div>

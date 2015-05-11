@@ -1,24 +1,66 @@
 class GroupsController < ApplicationController
 def new
   @group = Group.new
+@tags=Tag.all
+@selected=params[:data]
+@id=params[:id]
+respond_to do |format|
+      format.html
+      format.json {render json: [@selected ,@id]}
+
+    end
 end
+def search
+  @location =params[:location]
+  @distance =params[:distance]
+  
+  @tag = Tag.where("name = ?",params[:tag])
+  @groups_tags=TagGroup.where("tag_id = ?",@tag[0].id)
+  @group_ids =[];
+  @groups_tags.each do |group_tag|
+    @group_ids.push(group_tag.group_id)
+  end
+  @groups= Group.where("id IN (?)",@group_ids).near(@location, @distance)
+  # @groups=@groups
+  render 'index'
+
+
+end  
 
 def index
     @groups = Group.all
   end
 
+
 def create
   @group = Group.new(group_params)
-   @tag = Tag.new(tag_params)
-	group_id=Group.last.id 
-	tag_id=Tag.last.id 
-   @tag_group = TagGroup.new(:group_id=> group_id,:tag_id=> tag_id)
 
- if  @group.save and @tag.save and @tag_group.save
+
+    x=params.require(:tag).permit(:id)
+tag_id=x['id']
+all_tag=tag_id.split(',')
+
+
+x=all_tag.length-1
+ if  @group.save  
+
+
+  @coors=Geocoder.coordinates(@group.location)
+  @group.latitude=@coors[0]
+  @group.longitude=@coors[1]
+
+
+	group_id=Group.last.id 
+(0..x).each do |i|	 
+   @tag_group = TagGroup.new(:group_id=> group_id,:tag_id=> all_tag[i])
+
+@tag_group.save
+ end
   redirect_to @group
 else
 render 'new'
-  end
+  
+end
 end
 
 
@@ -26,13 +68,15 @@ end
 
 def show
     @group = Group.find(params[:id])
-id=current_user.id
-group_id=params[:id]
-@groupmemebe = GroupMemeber.where({:group_id=>group_id,:user_id=>id})
-@groupcount = GroupMemeber.where({:group_id=>group_id})  
-@groupadmin = Group.where({:id=>group_id,:user_id=>id}) 
+    if( current_user )
+@id=current_user.id
+@group_id=params[:id]
+@groupmemebe = GroupMemeber.where({:group_id=>@group_id,:user_id=>@id})
+@groupcount = GroupMemeber.where({:group_id=>@group_id})  
+@groupadmin = Group.where({:id=>@group_id,:user_id=>@id}) 
 
-@count=@groupmemebe.count
+@count=@groupcount.count
+end
 
 end
 
@@ -79,7 +123,9 @@ end
 
 private
   def group_params
-    params.require(:group).permit(:topicname, :description, :avatar,:user_id)
+
+    params.require(:group).permit(:topicname, :description, :avatar, :location, :latitude, :longitude)
+
   end
  def tag_params
     params.require(:tag).permit(:name)
