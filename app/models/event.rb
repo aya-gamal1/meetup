@@ -1,7 +1,7 @@
 class Event < ActiveRecord::Base
 
   has_many :user, :through => :eventadmins
-  has_many :eventadmins
+  has_many :event_admins , dependent: :destroy
   has_many :comments ,dependent: :destroy
   belongs_to :group
 

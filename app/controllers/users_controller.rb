@@ -50,6 +50,6 @@ def index
 
 private
   def user_params
-    params.require(:user).permit(:name, :email, :password, :gender, :city, :country, :age, :avatar)
+    params.require(:user).permit(:name, :email, :password, :gender, :city, :country, :age, :avatar,:isadmin)
   end
 end

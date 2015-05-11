@@ -40,9 +40,23 @@ render 'new'
   end
 end
 
+
+
+
 def show
     @group = Group.find(params[:id])
+id=current_user.id
+group_id=params[:id]
+@groupmemebe = GroupMemeber.where({:group_id=>group_id,:user_id=>id})
+@groupcount = GroupMemeber.where({:group_id=>group_id})  
+@groupadmin = Group.where({:id=>group_id,:user_id=>id}) 
+
+@count=@groupcount.count
+
 end
+
+
+
 
 def edit
 
@@ -61,15 +75,32 @@ end
 
 def destroy
 @group=Group.find(params[:id])
-if @group.destroy
+group_id=params[:id]
+
+
+
+if @group.destroy 
 redirect_to groups_path
+
 end
 end
+
+def action
+
+	@groupmemeber = GroupMemeber.new(groupmemeber_params)
+@groupmemeber.save
+	id=GroupMemeber.last.group_id 
+
+redirect_to group_path(:id=>id)
+end
+
 
 
 private
   def group_params
+
     params.require(:group).permit(:topicname, :description, :avatar, :location, :latitude, :longitude)
+
   end
  def tag_params
     params.require(:tag).permit(:name)
@@ -77,5 +108,10 @@ private
 def grouptag_params
     params.require(:grouptag).permit(:group_id,:tag_id)
   end
+def groupmemeber_params
+
+ params.permit(:group_id,:user_id)
+  end
+
 
 end

@@ -1,6 +1,6 @@
 <div class="container">
 <%= form_for @user, :html => { :class => "form-horizontal user" } do |f| %>
-
+    <%= f.hidden_field :isadmin, :value => "user" %>
   <% if @user.errors.any? %>
     <div id="error_expl" class="panel panel-danger">
       <div class="panel-heading">

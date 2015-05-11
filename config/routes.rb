@@ -6,6 +6,8 @@ resources:comments
 end
 end
 get 'events/find' => 'events#find'
+post 'groups/action'
+post 'events/action'
 
 
 resources :users

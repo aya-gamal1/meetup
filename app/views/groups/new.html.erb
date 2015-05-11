@@ -4,15 +4,13 @@
 
 
 
-
-
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+ 
   <div class="form-group">
     <%= f.label :title %>
     <%= f.text_field :topicname,class:"form-control" ,placeholder:"Enter group name....."%>
   </div>
-  
-
- 
+   
  <% if @group.errors[:topicname].present? %>
           title can`t be blank
   <% end %>
