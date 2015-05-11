@@ -14,7 +14,7 @@ def create
   if @user.save
        UserMailer.welcome_email(@user).deliver_now
      #redirect_to root_url, :notice => "Signed up!"
-     redirect_to @user
+     redirect_to groups_path
   else
     render "new"
   end
@@ -49,6 +49,6 @@ def index
 
 private
   def user_params
-    params.require(:user).permit(:name, :email, :password, :gender, :city, :country, :age, :avatar)
+    params.require(:user).permit(:name, :email, :password, :gender, :city, :country, :age, :avatar,:isadmin)
   end
 end
