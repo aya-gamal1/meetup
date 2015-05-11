@@ -16,8 +16,7 @@ def create
      redirect_to root_url, :notice => "Signed up!"
      #redirect_to "groups/index"
   else
-    #redirect_to "groups/index"
-    redirect_to root_url, :notice => "Signed up!"
+   render 'new'
   end
 end
 def show
