@@ -1,0 +1,36 @@
+<% if current_user.isadmin == "admin" %>
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Tags</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tags.each do |tag| %>
+      <tr>
+        <td><%= tag.name %></td>
+        <td><%= link_to 'Show', tag %></td>
+        <td><%= link_to 'Edit', edit_tag_path(tag) %></td>
+        <td><%= link_to 'Destroy', tag, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Tag', new_tag_path %>
+
+
+<%else%>
+<p> you are not the admin so you cant see this page</p>
+ <script type="text/javascript">
+    window.location.href="http://localhost:3000/groups"  // put your correct path in a string here
+  </script>
+<%end%>  

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150511130830) do
+ActiveRecord::Schema.define(version: 20150511172524) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "text",       limit: 65535
@@ -71,12 +71,13 @@ ActiveRecord::Schema.define(version: 20150511130830) do
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
     t.string   "avatar",              limit: 255
+    t.float    "longitude",           limit: 24
+    t.float    "latitude",            limit: 24
     t.string   "avatar_file_name",    limit: 255
     t.string   "avatar_content_type", limit: 255
     t.integer  "avatar_file_size",    limit: 4
     t.datetime "avatar_updated_at"
-    t.float    "latitude",            limit: 24
-    t.float    "longitude",           limit: 24
+    t.string   "location",            limit: 255
   end
 
   add_index "groups", ["user_id"], name: "index_groups_on_user_id", using: :btree

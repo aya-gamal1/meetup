@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :tags
   get 'groups/search' => 'groups#search'
 resources :groups do
   resources :events do 
@@ -9,13 +10,11 @@ get 'events/find' => 'events#find'
 post 'groups/action'
 post 'events/action'
 
-
 resources :users
 get "log_out" => "sessions#destroy", :as => "log_out"
 get "log_in" => "sessions#new", :as => "log_in"
 get "sign_up" => "users#new", :as => "sign_up"
 
-#root :to => "users#index"
 resources :sessions
 root :to => "groups#index"
 
