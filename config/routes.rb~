@@ -17,10 +17,6 @@ get "sign_up" => "users#new", :as => "sign_up"
 <<<<<<< HEAD
 #root :to => "users#index"
 resources :sessions
-=======
->>>>>>> 0b44a3a43ee2e3178462d4adfb15c5c86c1ba1d1
-
-resources :sessions
 root :to => "groups#index"
 
   # The priority is based upon order of creation: first created -> highest priority.
