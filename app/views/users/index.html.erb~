@@ -1,3 +1,5 @@
+<% if current_user.isadmin == "admin" %>
+  
 <%- model_class = User -%>
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
@@ -5,18 +7,17 @@
 <table class="table table-striped">
   
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
+
       <th><%= model_class.human_attribute_name(:name) %></th>
       <th><%= model_class.human_attribute_name(:email) %></th>
-      <th><%= model_class.human_attribute_name(:password) %></th>
       <th><%= model_class.human_attribute_name(:gender) %></th>
       <th><%= model_class.human_attribute_name(:age) %></th>
       <th><%= model_class.human_attribute_name(:city) %></th>
       <th><%= model_class.human_attribute_name(:country) %></th>
-      <th><%= model_class.human_attribute_name(:avatar) %></th>
-      <th><%= model_class.human_attribute_name(:isadmin) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+     <!-- <th><%= model_class.human_attribute_name(:avatar) %></th>-->
+      <!--<th><%= model_class.human_attribute_name(:isadmin) %></th>-->
+
+
 
     </tr>
   <% @users.each do |user| %>
@@ -28,11 +29,15 @@
 <td><%= user.age %></td>
 <td><%= user.city %></td>
 <td><%= user.country %></td>
-<%= image_tag user.avatar.url(:medium) %>
 <td><%= user.isadmin %></td>
+<td><%= link_to 'Show', user_path(user) %></td>
+<td><%= link_to 'Edit', edit_user_path(user) %></td>
+<td><%= link_to 'Destroy', user_path(user), method: :delete %></td>
 </tr>
 <%end%>
+<tbody>
 
-
-  <tbody>
-  
+ <script type="text/javascript">
+    window.location.href="http://localhost:3000/groups"  // put your correct path in a string here
+  </script>
+<%end%>  

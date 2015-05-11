@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
+ActiveRecord::Schema.define(version: 20150508200900) do
+=======
 ActiveRecord::Schema.define(version: 20150511130830) do
+>>>>>>> 0b44a3a43ee2e3178462d4adfb15c5c86c1ba1d1
 
   create_table "comments", force: :cascade do |t|
     t.text     "text",       limit: 65535
@@ -71,10 +75,15 @@ ActiveRecord::Schema.define(version: 20150511130830) do
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
     t.string   "avatar",              limit: 255
+    t.float    "longitude",           limit: 24
+    t.float    "latitude",            limit: 24
     t.string   "avatar_file_name",    limit: 255
     t.string   "avatar_content_type", limit: 255
     t.integer  "avatar_file_size",    limit: 4
     t.datetime "avatar_updated_at"
+    t.float    "latitude",            limit: 24
+    t.float    "longitude",           limit: 24
+    t.string   "location",            limit: 255
   end
 
   add_index "groups", ["user_id"], name: "index_groups_on_user_id", using: :btree
@@ -96,21 +105,17 @@ ActiveRecord::Schema.define(version: 20150511130830) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "name",                limit: 255
-    t.string   "email",               limit: 255
-    t.string   "password",            limit: 255
-    t.string   "gender",              limit: 255
-    t.integer  "age",                 limit: 4
-    t.string   "city",                limit: 255
-    t.string   "country",             limit: 255
-    t.string   "avatar",              limit: 255
-    t.string   "isadmin",             limit: 255
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
-    t.string   "avatar_file_name",    limit: 255
-    t.string   "avatar_content_type", limit: 255
-    t.integer  "avatar_file_size",    limit: 4
-    t.datetime "avatar_updated_at"
+    t.string   "name",       limit: 255
+    t.string   "email",      limit: 255
+    t.string   "password",   limit: 255
+    t.string   "gender",     limit: 255
+    t.integer  "age",        limit: 4
+    t.string   "city",       limit: 255
+    t.string   "country",    limit: 255
+    t.string   "avatar",     limit: 255
+    t.string   "isadmin",    limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   add_foreign_key "comments", "events"

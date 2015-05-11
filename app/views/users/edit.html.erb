@@ -1,5 +1,15 @@
+<% if current_user.id == @user.id ||  current_user.isadmin == "admin"%>
 <%- model_class = User -%>
 <div class="page-header">
   <h1><%=t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => model_class.model_name.human.titleize %></h1>
 </div>
 <%= render :partial => 'form' %>
+
+<% else %>
+
+    <p> it's not your profile so you can't edit it </p> 
+   
+     <script type="text/javascript">
+    window.location.href="http://localhost:3000/groups"  // put your correct path in a string here
+  </script>
+<% end %>
