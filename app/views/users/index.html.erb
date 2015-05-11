@@ -1,5 +1,5 @@
 <% if current_user.isadmin == "admin" %>
-  
+ <%= link_to 'Groups', groups_path %>
 <%- model_class = User -%>
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
@@ -14,8 +14,8 @@
       <th><%= model_class.human_attribute_name(:age) %></th>
       <th><%= model_class.human_attribute_name(:city) %></th>
       <th><%= model_class.human_attribute_name(:country) %></th>
-     <!-- <th><%= model_class.human_attribute_name(:avatar) %></th>-->
-      <!--<th><%= model_class.human_attribute_name(:isadmin) %></th>-->
+
+
 
 
 
@@ -24,12 +24,11 @@
 <tr>
 <td><%= user.name %></td>
 <td><%= user.email %></td>
-<td><%= user.password %></td>
 <td><%= user.gender %></td>
 <td><%= user.age %></td>
 <td><%= user.city %></td>
 <td><%= user.country %></td>
-<td><%= user.isadmin %></td>
+
 <td><%= link_to 'Show', user_path(user) %></td>
 <td><%= link_to 'Edit', edit_user_path(user) %></td>
 <td><%= link_to 'Destroy', user_path(user), method: :delete %></td>
@@ -37,6 +36,7 @@
 <%end%>
 <tbody>
 <%else%>
+<p> you are not the admin so you cant see this page</p>
  <script type="text/javascript">
     window.location.href="http://localhost:3000/groups"  // put your correct path in a string here
   </script>

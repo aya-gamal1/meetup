@@ -1,5 +1,5 @@
 <% if current_user.isadmin == "admin" %>
-  
+ <%= link_to 'Groups', groups_path %>
 <%- model_class = User -%>
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
@@ -36,7 +36,8 @@
 </tr>
 <%end%>
 <tbody>
-
+<%else%>
+<p> you are not the admin so you cant see this page</p>
  <script type="text/javascript">
     window.location.href="http://localhost:3000/groups"  // put your correct path in a string here
   </script>

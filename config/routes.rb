@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :tags
   get 'groups/search' => 'groups#search'
 resources :groups do
   resources :events do 

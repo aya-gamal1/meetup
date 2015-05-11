@@ -1,0 +1,16 @@
+<% if current_user.isadmin == "admin" %>
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @tag.name %>
+</p>
+
+<%= link_to 'Edit', edit_tag_path(@tag) %> |
+<%= link_to 'Back', tags_path %>
+
+<%else%>
+<p> you are not the admin so you cant see this page</p>
+ <script type="text/javascript">
+    window.location.href="http://localhost:3000/groups"  // put your correct path in a string here
+  </script>
