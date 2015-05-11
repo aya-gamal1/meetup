@@ -1,5 +1,6 @@
+
+<div class="container">
 <%= form_for @user, :html => { :class => "form-horizontal user" } do |f| %>
-    <%= f.hidden_field :isadmin, :value => current_user.id %>
   <% if @user.errors.any? %>
     <div id="error_expl" class="panel panel-danger">
       <div class="panel-heading">
@@ -77,11 +78,13 @@
     <%= f.label :avatar, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
    
-  <%= f.file_field :avatar  %>
+  <!--<%= f.file_field :avatar  %>-->
+ <%= f.text_field :avatar, :class => 'form-control' %>
 
     </div>
   
   </div>
+ <%= f.hidden_field :isadmin, :value => "user" %>
 
 
   <div class="form-group">
@@ -92,3 +95,4 @@
   </div>
 
 <% end %>
+</div>

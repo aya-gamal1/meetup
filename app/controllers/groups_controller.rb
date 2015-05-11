@@ -1,6 +1,14 @@
 class GroupsController < ApplicationController
 def new
   @group = Group.new
+@tags=Tag.all
+@selected=params[:data]
+@id=params[:id]
+respond_to do |format|
+      format.html
+      format.json {render json: [@selected ,@id]}
+
+    end
 end
 def search
   @location =params[:location]
@@ -23,21 +31,36 @@ def index
     @groups = Group.all
   end
 
+
 def create
   @group = Group.new(group_params)
+
+
+    x=params.require(:tag).permit(:id)
+tag_id=x['id']
+all_tag=tag_id.split(',')
+
+
+x=all_tag.length-1
+ if  @group.save  
+
+
   @coors=Geocoder.coordinates(@group.location)
   @group.latitude=@coors[0]
   @group.longitude=@coors[1]
-   @tag = Tag.new(tag_params)
-	group_id=Group.last.id 
-	tag_id=Tag.last.id 
-   @tag_group = TagGroup.new(:group_id=> group_id,:tag_id=> tag_id)
 
- if  @group.save and @tag.save and @tag_group.save
+
+	group_id=Group.last.id 
+(0..x).each do |i|	 
+   @tag_group = TagGroup.new(:group_id=> group_id,:tag_id=> all_tag[i])
+
+@tag_group.save
+ end
   redirect_to @group
 else
 render 'new'
-  end
+  
+end
 end
 
 

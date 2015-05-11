@@ -1,8 +1,9 @@
 
 <html>
 <body>
+  <% if current_user %>
 number of memeber :
-<%= @count %>
+<%= @count %><br>
 
 <%  if current_user.isadmin == "admin" or current_user.id == @group.user_id %>
 <%= link_to 'edit group', edit_group_path(@group), method: :get %>
@@ -14,15 +15,21 @@ number of memeber :
 <%= button_to 'join'  ,{:controller => "groups", :action => "action", :group_id => @group.id, :user_id=>current_user.id} ,:id=>"button", :method=>:post  %>
 <% end %>
 
-
+<% end %>
 
 <div class="container">
   <h1 class="page-header text-capitalize"><%= @group.topicname %></h1>
   <div><%= image_tag(@group.avatar.url, class:'center-block') %></div>
 
+
+ <% if current_user %>
+<%if @groupcount.present?  or @group.user_id==current_user.id or current_user.isadmin=="admin"  %>
+
+
+
 <%= link_to 'Add Event', new_group_event_path(@group), method: :get, class:"pull-right btn btn-info" %>
-
-
+<% end %>
+<%end%>
  
 
   <strong>Description:</strong>

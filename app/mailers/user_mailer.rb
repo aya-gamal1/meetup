@@ -15,4 +15,13 @@ class UserMailer < ApplicationMailer
     mail(:to => user.email, :subject => 'Welcome to my website.')
   end
 
+  def users_email(user)
+    @user= user
+    @url = 'http://localhost:3000/sign_up'
+    @site_name = "localhost"
+
+    mail(:to => user.email, :subject => 'user logged to the website.')
+  end
+ 
+
 end

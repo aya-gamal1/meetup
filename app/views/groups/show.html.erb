@@ -20,10 +20,16 @@
 
   <h1 class="page-header text-capitalize"><%= @group.topicname %></h1>
   <div><%= image_tag(@group.avatar.url, class:'center-block') %></div>
+
+
  <% if current_user %>
+<%if @groupcount.present?  or @group.user_id==current_user.id or current_user.isadmin=="admin"  %>
+
+
+
 <%= link_to 'Add Event', new_group_event_path(@group), method: :get, class:"pull-right btn btn-info" %>
 <% end %>
-
+<%end%>
  
 <p>
   <strong>Description:</strong>

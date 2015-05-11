@@ -77,7 +77,6 @@ ActiveRecord::Schema.define(version: 20150511130830) do
     t.datetime "avatar_updated_at"
     t.float    "latitude",            limit: 24
     t.float    "longitude",           limit: 24
-    t.string   "location",            limit: 255
   end
 
   add_index "groups", ["user_id"], name: "index_groups_on_user_id", using: :btree
