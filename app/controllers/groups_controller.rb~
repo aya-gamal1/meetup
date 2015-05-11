@@ -45,9 +45,9 @@ x=all_tag.length-1
  if  @group.save  
 
 
-  #@coors=Geocoder.coordinates(@group.location)
-  #@group.latitude=@coors[0]
-  #@group.longitude=@coors[1]
+  @coors=Geocoder.coordinates(@group.location)
+  @group.latitude=@coors[0]
+  @group.longitude=@coors[1]
 
 
 	group_id=Group.last.id 
@@ -124,7 +124,11 @@ end
 private
   def group_params
 
+<<<<<<< HEAD
     params.require(:group).permit(:topicname, :description, :avatar, :location,:latitude, :longitude)
+=======
+    params.require(:group).permit(:topicname, :description, :avatar, :location, :latitude, :longitude, :user_id)
+>>>>>>> 7dbfc21f0861867c8adf8b840f5297c059aec41c
 
   end
  def tag_params

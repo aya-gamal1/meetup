@@ -1,0 +1,30 @@
+<% if current_user.isadmin == "admin" %>
+<%= form_for(@tag) do |f| %>
+  <% if @tag.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@tag.errors.count, "error") %> prohibited this tag from being saved:</h2>
+
+      <ul>
+      <% @tag.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+
+<%else%>
+<p> you are not the admin so you cant see this page</p>
+ <script type="text/javascript">
+    window.location.href="http://localhost:3000/groups"  // put your correct path in a string here
+  </script>
+<%end%> 

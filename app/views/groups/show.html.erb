@@ -1,23 +1,23 @@
 
 <html>
 <body>
+  <div class="container">
   <% if current_user %>
-number of memeber :
-<%= @count %><br>
+
 
 <%  if current_user.isadmin == "admin" or current_user.id == @group.user_id %>
-<%= link_to 'edit group', edit_group_path(@group), method: :get %>
-<%= link_to 'delete group', group_path(@group), method: :delete,
+<%= link_to 'Edit', edit_group_path(@group), method: :get, class:"btn btn-warning pull-right" %>
+<%= link_to 'Delete', group_path(@group), method: :delete,class:"btn btn-danger pull-right",
                data: { confirm: 'Are you sure?' } %>
 <% end %>
 
 <%if !@groupmemebe.present? and current_user.isadmin != "admin" and !@groupadmin.present? %>
-<%= button_to 'join'  ,{:controller => "groups", :action => "action", :group_id => @group.id, :user_id=>current_user.id} ,:id=>"button", :method=>:post  %>
+<%= button_to 'join'  ,{:controller => "groups", :action => "action", :group_id => @group.id, :user_id=>current_user.id} ,:id=>"button", :method=>:post ,class:"btn btn-success pull-right" %>
 <% end %>
 
 <% end %>
 
-<div class="container">
+
   <h1 class="page-header text-capitalize"><%= @group.topicname %></h1>
   <div><%= image_tag(@group.avatar.url, class:'center-block') %></div>
 
@@ -31,12 +31,14 @@ number of memeber :
 <% end %>
 <%end%>
  
-
+<p>
   <strong>Description:</strong>
   <%= @group.description %>
-
-
- 
+ </p> 
+<p>
+<strong>Number of Memebers:</strong>
+<%= @count %>
+ </p>
 <h2>Events</h2>
 <% @group.events.each do |event| %>
   

@@ -28,8 +28,9 @@
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <% if current_user %>
       <%= link_to 'Start Group', new_group_path, class:"btn navbar-btn btn-danger" %>
-      
+      <% end %>
       <ul class="nav navbar-nav navbar-right">
          <% if current_user %>
     Logged in as <%= current_user.name %>.
@@ -55,15 +56,7 @@
 </nav>
 <%= yield %>
 
-<div id="user_nav">
-  <% if current_user %>
-    Logged in as <%= current_user.name %>.
-    <%= link_to "Log out", log_out_path %>
-  <% else %>
-    <%= link_to "Sign up", sign_up_path %> or
-    <%= link_to "log in", log_in_path %>
-  <% end %>
-</div>
+
 
 <% flash.each do |name, msg| %>
   <%= content_tag :div, msg, :id => "flash_#{name}" %>

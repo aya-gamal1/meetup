@@ -9,13 +9,15 @@ get 'events/find' => 'events#find'
 post 'groups/action'
 post 'events/action'
 
-
 resources :users
 get "log_out" => "sessions#destroy", :as => "log_out"
 get "log_in" => "sessions#new", :as => "log_in"
 get "sign_up" => "users#new", :as => "sign_up"
 <<<<<<< HEAD
+=======
+
 #root :to => "users#index"
+>>>>>>> f74b264b4359df17eac5902c208da083b2c946f4
 resources :sessions
 root :to => "groups#index"
 

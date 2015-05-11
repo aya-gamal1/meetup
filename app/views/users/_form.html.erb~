@@ -1,4 +1,3 @@
-
 <div class="container">
 <%= form_for @user, :html => { :class => "form-horizontal user" } do |f| %>
   <% if @user.errors.any? %>
@@ -78,8 +77,8 @@
     <%= f.label :avatar, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
    
-  <!--<%= f.file_field :avatar  %>-->
- <%= f.text_field :avatar, :class => 'form-control' %>
+  <%= f.file_field :avatar  %>
+ <!--<%= f.text_field :avatar, :class => 'form-control' %>-->
 
     </div>
   
