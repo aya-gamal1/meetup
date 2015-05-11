@@ -124,11 +124,9 @@ end
 private
   def group_params
 
-<<<<<<< HEAD
-    params.require(:group).permit(:topicname, :description, :avatar, :location,:latitude, :longitude)
-=======
+
     params.require(:group).permit(:topicname, :description, :avatar, :location, :latitude, :longitude, :user_id)
->>>>>>> 7dbfc21f0861867c8adf8b840f5297c059aec41c
+
 
   end
  def tag_params
