@@ -8,9 +8,28 @@ border:solid ;
 border:solid 1px;
 width:100px;
 float:left;
+height:50px;
+}
+.div2{
+border:solid 1px;
+height:200px;
 }
 
+.div4{
+border:solid 1px;
+width:100px;
+float:left;
+height:50px;
+}
+
+.div5{
+border:solid 1px;
+
+
+height:200px;
+}
 </style>
+
 </head>
 <body>
 
@@ -47,12 +66,14 @@ float:left;
     <%= fields_for :tag do |t| %>
 
     <%= t.label :interest %><br>
-            <%= t.text_field :name ,class:"text form-control"  %><br/><br />
-    <%= t.hidden_field :id , class:"id" %>
-<% @tags.each do |tag| %>
-<div class="div1" id="<%= tag.id %>" ><%= tag.name %></div>
+<div class="div2 well"></div>
 
-        <% end %>
+            <%= t.hidden_field :name ,class:"text form-control"  %><br/><br />
+    <%= t.hidden_field :id , class:"id" %>
+<div class="div5 well"><% @tags.each do |tag| %>
+<div class="div1 well" id="<%= tag.id %>" ><%= tag.name %></div>
+
+        <% end %></div>
 <% end %>
 
 
@@ -72,9 +93,80 @@ float:left;
     <%= f.submit class:"btn btn-success" %>
   </div>
 <% end %>
-<%= javascript_include_tag "application" %>
+
+
+
+
 </div>
+<script>
+$(function() {
+var interest="";
+var intid="";
+var lastvalue=[];
+$(".div1").click(function(){
+
+var text=$(this).children().remove().end().text();
+var id=$(this).attr('id');
+$(this).remove();
+console.log(id);
+
+interest=text+','+interest;
+intid=id+','+intid;
+$.ajax({
+  type: "get",
+  url: "/groups/new",
+  dataType: "JSON",
+  data: { 'data': interest,'id':intid },
+  complete: function(data)
+  {
+var array = JSON.parse( data.responseText );
 
 
+divtext=array[0].split(',');
+divid=array[1].split(',');
+    console.log(divtext);
+$(".div2").append("<div class='div4 well' id="+divid[0]+">"+divtext[0]+"</div>");
+$(".div4").click(function(){
+
+var text1=$(this).children().remove().end().text();
+var id1=$(this).attr('id');
+$(this).remove();
+
+var index = divtext.indexOf(text1);
+if (index > -1) {
+    divtext.splice(index, 1);
+}
+
+var index1 = divid.indexOf(id1);
+if (index1 > -1) {
+    divid.splice(index1, 1);
+}
+
+//var rest=$(".div4").children().remove().end().text();
+console.log(array[0]);
+console.log(divtext+"aya");
+    console.log(typeof(array));
+    $(".text").val(divtext);
+    $(".id").val(divid);
+
+  });}
+});
+
+
+
+
+
+
+
+
+
+})
+
+
+
+
+});
+
+</script>
 </body>
 </html>

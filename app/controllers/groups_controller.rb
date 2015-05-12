@@ -11,6 +11,7 @@ respond_to do |format|
     end
 end
 
+
 def search
   
   if (params[:location] == "")
@@ -138,7 +139,9 @@ end
 private
   def group_params
 
+
     params.require(:group).permit(:topicname, :description, :avatar, :location, :latitude, :longitude, :user_id)
+
 
   end
  def tag_params
