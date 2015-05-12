@@ -14,7 +14,7 @@ def places
   # @searchQuery = params[:query]
   # @client = GooglePlaces::Client.new('AIzaSyBo4DokAnwVgyF7sQXE0EUlwdrNO3w5AvI')
 
-  # end
+   end
 def search
   
   if (params[:location] == "")

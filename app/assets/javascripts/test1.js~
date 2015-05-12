@@ -1,6 +1,7 @@
 $(function() {
 var interest="";
 var intid="";
+var lastvalue=[];
 $(".div1").click(function(){
 
 var text=$(this).children().remove().end().text();
@@ -19,11 +20,35 @@ $.ajax({
   {
 var array = JSON.parse( data.responseText );
 
+
+divtext=array[0].split(',');
+divid=array[1].split(',');
+    console.log(divtext);
+$(".div2").append("<div class='div4 well' id="+divid[0]+">"+divtext[0]+"</div>");
+$(".div4").click(function(){
+
+var text1=$(this).children().remove().end().text();
+var id1=$(this).attr('id');
+$(this).appendTo('.div5');
+
+var index = divtext.indexOf(text1);
+if (index > -1) {
+    divtext.splice(index, 1);
+}
+
+var index1 = divid.indexOf(id1);
+if (index1 > -1) {
+    divid.splice(index1, 1);
+}
+
+//var rest=$(".div4").children().remove().end().text();
+console.log(array[0]);
+console.log(divtext+"aya");
     console.log(typeof(array));
-    $(".text").val(array[0]);
-    $(".id").val(array[1]);
-    console.log(array[1]);
-  }
+    $(".text").val(divtext);
+    $(".id").val(divid);
+
+  });}
 });
 
 

@@ -10,11 +10,26 @@ respond_to do |format|
 
     end
 end
+def places
+  # @searchQuery = params[:query]
+  # @client = GooglePlaces::Client.new('AIzaSyBo4DokAnwVgyF7sQXE0EUlwdrNO3w5AvI')
+
+  # end
 def search
-  @location =params[:location]
-  @distance =params[:distance]
   
+  if (params[:location] == "")
+      if(current_user)
+
+    @location=current_user.city+","+current_user.country
+
+  end
+else
+  @location =params[:location]
+   end 
+  @distance =params[:distance]
+  if(params[:tag] != "")
   @tag = Tag.where("name = ?",params[:tag])
+  
   @groups_tags=TagGroup.where("tag_id = ?",@tag[0].id)
   @group_ids =[];
   @groups_tags.each do |group_tag|
@@ -22,13 +37,16 @@ def search
   end
   @groups= Group.where("id IN (?)",@group_ids).near(@location, @distance)
   # @groups=@groups
+else
+  @groups=Group.near(@location, @distance)
+end
   render 'index'
 
 
 end  
 
 def index
-    @groups = Group.all
+    @groups = Group.last(5).reverse
   end
 
 
