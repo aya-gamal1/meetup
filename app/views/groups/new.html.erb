@@ -62,7 +62,9 @@ float:left;
 </div>
 <div class="form-group">
   <%= f.label :location %>
-  <%= f.text_field :location %>
+   <%= f.select :location, 
+    options_for_select(['Alexandria,Egypt','Cairo,Egypt']),
+    class: 'form-control' %>
 </div>
 
  

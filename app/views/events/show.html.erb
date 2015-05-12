@@ -1,20 +1,30 @@
-number of memeber
-<%= @count%><br>
+<div class="container">
+
 <%if !@eventmember.present? and current_user.isadmin != "admin" and  !@eventadmin.present? %>
 <%= button_to 'join'  ,{:controller => "events", :action => "action", :event_id => @event.id, :user_id=>current_user.id ,:group_id=>@group.id} ,:id=>"button", :method=>:post  %>
 <% end %>
 
 
+<h1 class="page-header text-capitalize"><%= @event.title %></h1>
+<div>
+ <%= image_tag(@event.avatar.url, class:'center-block img-responsive') %>
+</div>
 
-<div class="container">
-<%= image_tag @event.avatar.url(:medium) %>
+<p>
+  <strong>Description:</strong>
+  <%= @event.description %>
+</p>
+<p>
+<strong>Number of Memebers:</strong>
+<%= @count%>
+</p>
 <p>
   <strong>Date:</strong>
   <%= @event.date %>
 </p>
 <p>
   <strong>Time:</strong>
-  <%= @event.time %>
+  <%= @event.time.to_s.split(' ')[1] %>
 </p>
 
 <p>
@@ -22,48 +32,42 @@ number of memeber
   <%= @event.location %>
 </p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @event.title %>
-</p>
+
  
-<p>
-  <strong>description:</strong>
-  <%= @event.description %>
-</p>
 
 
-<h2>comments</h2>
+
+<h2>Comments</h2>
 <% @event.comments.each do |comment| %>
   
  
-  <p>
-    <strong>Comments:</strong>
+  <div class="well">
+    
     <%= comment.text %>
 
 
 
 <%= link_to 'Delete ', [@group,@event, comment],
                method: :delete,
-               data: { confirm: 'Are you sure?' } %>
+               data: { confirm: 'Are you sure?' } ,class:"pull-right btn btn-warning"%>
 
 
-<%= link_to 'Edit', edit_group_event_comment_path(@group,@event,comment), method: :get %>
+<%= link_to 'Edit', edit_group_event_comment_path(@group,@event,comment), method: :get,class:"pull-right btn btn-danger" %>
 
-
+</div>
 
 <% end %>
 
-<h2>Add a comment:</h2>
+
 <%= form_for([@group,@event,@event.comments.build]) do |f| %>
 
 
   <div class="form-group">
     <%= f.label :body %><br>
-    <%= f.text_area :text ,class:"form-control"%>
+    <%= f.text_area :text ,class:"form-control",placeholder:"Add your comment here....."%>
   </div> 
   <div class="col-sm-10">
-    <%= f.submit %>
+    <%= f.submit class:"btn btn-success" %>
  </div>
 <% end %>
 </div>

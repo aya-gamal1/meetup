@@ -7,8 +7,10 @@
                                    class: 'form-control input-lg') %>
                 <%= select_tag(:distance, options_for_select(['2 km','5 km','10 km','25 km','50 km','100 km','Any
                 distance']), class: 'form-control input-lg') %>
-                <%= text_field_tag(:location,'', placeholder: 'City or Postal Code ...',
-                                   class: 'form-control input-lg') %>
+                
+                <%= select_tag :location, 
+    options_for_select(['Alexandria,Egypt','Cairo,Egypt']),
+    class: 'form-control input-lg' %>
                 <%= submit_tag("Groups", class: 'btn-lg btn-primary pull-right') %>
              <%= link_to 'Calendar',events_find_path, class:"btn-lg btn-default pull-right" %>
             <% end %>

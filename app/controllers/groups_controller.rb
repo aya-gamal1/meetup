@@ -10,11 +10,7 @@ respond_to do |format|
 
     end
 end
-def places
-  # @searchQuery = params[:query]
-  # @client = GooglePlaces::Client.new('AIzaSyBo4DokAnwVgyF7sQXE0EUlwdrNO3w5AvI')
 
-  # end
 def search
   
   if (params[:location] == "")
