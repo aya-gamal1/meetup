@@ -32,6 +32,8 @@ def show
 
     @group = Group.find(params[:group_id])
     @event = @group.events.find(params[:id])
+    
+@users=User.all
 
 id=current_user.id
 event_id=params[:id]
